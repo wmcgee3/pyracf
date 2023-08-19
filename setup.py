@@ -71,7 +71,7 @@ def main():
                 extra_link_args=["-Wl,INFO"],
             )
         ],
-        python_requires="~=3.11",
+        python_requires=">=3.8.1",
         license_files=("LICENSE"),
         install_requires=get_requirements(),
         cmdclass={"build_ext": CustomBuildExt},

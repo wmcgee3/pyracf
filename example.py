@@ -1,0 +1,62 @@
+from pyracf.user import RacfUser
+
+racf_user = RacfUser(input("Enter RACF ID: "))
+
+print(f"{racf_user.user = }")
+print(f"{racf_user.name = }")
+print(f"{racf_user.owner = }")
+print(f"{racf_user.created = }")
+print(f"{racf_user.default_group = }")
+print(f"{racf_user.password_date = }")
+print(f"{racf_user.password_interval = }")
+print(f"{racf_user.passphrase_date = }")
+print(f"{racf_user.attributes = }")
+print(f"{racf_user.revoke_date = }")
+print(f"{racf_user.resume_date = }")
+print(f"{racf_user.last_access = }")
+print(f"{racf_user.class_authorizations = }")
+print(f"{racf_user.installation_data = }")
+print(f"{racf_user.model_name = }")
+print(f"{racf_user.logon_allowed_days = }")
+print(f"{racf_user.logon_allowed_time = }")
+print(f"{racf_user.security_level = }")
+print(f"{racf_user.category_authorization = }")
+print(f"{racf_user.security_label = }")
+
+print()
+
+for user_group in racf_user.groups:
+    print(f"{user_group.name = }")
+    print(f"{user_group.auth = }")
+    print(f"{user_group.connect_owner = }")
+    print(f"{user_group.connect_date = }")
+
+    print(f"{user_group.connects = }")
+    print(f"{user_group.uacc = }")
+    print(f"{user_group.last_connect = }")
+
+    print(f"{user_group.connect_attributes = }")
+
+    print(f"{user_group.revoke_date = }")
+    print(f"{user_group.resume_date = }")
+    print()
+
+print(f"{racf_user.omvs.home = }")
+print(f"{racf_user.omvs.max_address_space_size = }")
+print(f"{racf_user.omvs.max_cpu_time = }")
+print(f"{racf_user.omvs.max_mmap_area = }")
+print(f"{racf_user.omvs.max_process_files = }")
+print(f"{racf_user.omvs.max_processes = }")
+print(f"{racf_user.omvs.max_threads = }")
+print(f"{racf_user.omvs.program = }")
+print(f"{racf_user.omvs.uid = }")
+print()
+
+print(f"{racf_user.tso.account_number = }")
+print(f"{racf_user.tso.command = }")
+print(f"{racf_user.tso.max_size = }")
+print(f"{racf_user.tso.proc = }")
+print(f"{racf_user.tso.size = }")
+print(f"{racf_user.tso.unit = }")
+print(f"{racf_user.tso.user_data = }")
+print()
