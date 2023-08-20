@@ -1,8 +1,9 @@
 import platform
+from typing import Optional
 
 import xmltodict
 
-from .models import _Response
+from ._models import _Response
 
 if platform.system() == "OS/390":
     from cpyracf import call_irrsmo00
@@ -13,8 +14,8 @@ else:
         return b""
 
 
-def get_message_value(name: str, segment: str, key: str):
-    messages = get_messages(name, segment)
+def _get_message_value(resource: str, name: str, segment: str, key: str):
+    messages = _get_messages(resource, name, segment)
     return next(
         (
             line[len(key) + 2 :]
@@ -24,13 +25,13 @@ def get_message_value(name: str, segment: str, key: str):
     )
 
 
-def get_messages(name: str, segment: str | None = None):
+def _get_messages(resource: str, name: str, segment: Optional[str] = None):
     request_xml = (
         "<?xml version='1.0' encoding='cp1047'?>"
         + "<securityrequest xmlns='http://www.ibm.com/systems/zos/saf' xmlns:racf='http://www.ibm.com/systems/zos/racf'>"
-        + f"<user name='{name}' operation='listdata' requestid='UserRequest'>"
+        + f"<{resource} name='{name}' operation='listdata' requestid='{resource.capitalize()}Request'>"
         + (f"<{segment} />" if segment is not None else "")
-        + "</user>"
+        + f"</{resource}>"
         + "</securityrequest>"
     ).encode("cp1047")
     response_text = call_irrsmo00(
@@ -38,6 +39,5 @@ def get_messages(name: str, segment: str | None = None):
         xml_len=len(request_xml),
         opts=1,
     ).decode("cp1047")
-    return _Response(
-        **xmltodict.parse(response_text)
-    ).security_result.user.command.message
+    response = _Response(**xmltodict.parse(response_text))
+    return response.security_result.user.command.messages

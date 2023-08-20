@@ -7,7 +7,7 @@ import __init__
 
 import tests.resource.test_resource_constants as TestResourceConstants
 from pyracf import ResourceAdmin, SecurityRequestError
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 
 # Resolves F401
 __init__

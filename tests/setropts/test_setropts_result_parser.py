@@ -7,7 +7,7 @@ import __init__
 
 import tests.setropts.test_setropts_constants as TestSetroptsConstants
 from pyracf import SecurityRequestError
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 from pyracf.setropts.setropts_admin import SetroptsAdmin
 
 # Resolves F401

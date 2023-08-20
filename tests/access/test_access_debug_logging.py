@@ -10,7 +10,7 @@ import __init__
 
 import tests.access.test_access_constants as TestAccessConstants
 from pyracf import AccessAdmin, SecurityRequestError
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 
 # Resolves F401
 __init__

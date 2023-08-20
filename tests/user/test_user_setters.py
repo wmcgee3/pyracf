@@ -7,7 +7,7 @@ import __init__
 
 import tests.user.test_user_constants as TestUserConstants
 from pyracf import UserAdmin
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 
 # Resolves F401
 __init__

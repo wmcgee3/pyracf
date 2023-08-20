@@ -62,7 +62,7 @@ def main():
         ext_modules=[
             Extension(
                 "cpyracf",
-                sources=["pyracf/common/irrsmo00.c"],
+                sources=["pyracf/irrsmo00.c"],
                 extra_compile_args=[
                     "-D_XOPEN_SOURCE_EXTENDED",
                     "-Wc,lp64,langlvl(EXTC99),STACKPROTECT(ALL),",

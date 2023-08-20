@@ -1,8 +1,10 @@
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 
 class _Command(BaseModel):
-    message: list[str | None]
+    messages: list[Optional[str]] = Field(..., alias="message")
 
 
 class _User(BaseModel):

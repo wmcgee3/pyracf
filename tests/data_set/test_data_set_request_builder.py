@@ -7,7 +7,7 @@ import __init__
 
 import tests.data_set.test_data_set_constants as TestDataSetConstants
 from pyracf import DataSetAdmin
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 
 # Resolves F401
 __init__

@@ -7,7 +7,7 @@ import __init__
 
 import tests.setropts.test_setropts_constants as TestSetroptsConstants
 from pyracf import SetroptsAdmin
-from pyracf.common.irrsmo00 import IRRSMO00
+from pyracf.irrsmo00 import IRRSMO00
 
 # Resolves F401
 __init__
