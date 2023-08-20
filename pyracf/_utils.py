@@ -9,9 +9,9 @@ if platform.system() == "OS/390":
     from cpyracf import call_irrsmo00
 else:
     # Ignore import of extension on non-z/OS platforms to allow for unit testing off platform.
-    def call_irrsmo00(*, xml_str, xml_len, opts):
+    def call_irrsmo00(*, xml_str: bytes, xml_len: int, opts: int) -> bytes:
         _ = xml_str, xml_len, opts
-        return b""
+        return "".encode()
 
 
 def _get_message_value(resource: str, name: str, segment: str, key: str):

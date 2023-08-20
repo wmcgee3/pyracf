@@ -15,29 +15,29 @@ class RacfUser:
 
     @property
     def attributes(self):
-        return _get_messages("user", self._name)[2][11:]
+        return _get_messages(_SEGMENT, self._name)[2][11:]
 
     @property
     def category_authorization(self):
-        return _get_messages("user", self._name)[-2]
+        return _get_messages(_SEGMENT, self._name)[-2]
 
     @property
     def class_authorizations(self):
-        return _get_messages("user", self._name)[5][21:]
+        return _get_messages(_SEGMENT, self._name)[5][21:]
 
     @property
     def created(self):
         return datetime.strptime(
-            _get_messages("user", self._name)[0][65:], "%y.%j"
+            _get_messages(_SEGMENT, self._name)[0][65:], "%y.%j"
         ).date()
 
     @property
     def default_group(self):
-        return _get_messages("user", self._name)[1][14:23].strip()
+        return _get_messages(_SEGMENT, self._name)[1][14:23].strip()
 
     @property
     def groups(self):
-        group_messages = _get_messages("user", self._name)[11:-12]
+        group_messages = _get_messages(_SEGMENT, self._name)[11:-12]
         return [
             _UserGroup(group_messages[i : i + 4])
             for i in range(0, len(group_messages), 4)
@@ -45,27 +45,27 @@ class RacfUser:
 
     @property
     def installation_data(self):
-        return _get_messages("user", self._name)[6][18:]
+        return _get_messages(_SEGMENT, self._name)[6][18:]
 
     @property
     def last_access(self):
-        return _get_messages("user", self._name)[4][12:]
+        return _get_messages(_SEGMENT, self._name)[4][12:]
 
     @property
     def logon_allowed_days(self):
-        return _get_messages("user", self._name)[10][:32].strip()
+        return _get_messages(_SEGMENT, self._name)[10][:32].strip()
 
     @property
     def logon_allowed_time(self):
-        return _get_messages("user", self._name)[10][32:]
+        return _get_messages(_SEGMENT, self._name)[10][32:]
 
     @property
     def model_name(self):
-        return _get_messages("user", self._name)[7]
+        return _get_messages(_SEGMENT, self._name)[7]
 
     @property
     def name(self):
-        return _get_messages("user", self._name)[0][19:41].strip()
+        return _get_messages(_SEGMENT, self._name)[0][19:41].strip()
 
     @property
     def omvs(self):
@@ -75,13 +75,13 @@ class RacfUser:
 
     @property
     def owner(self):
-        return _get_messages("user", self._name)[0][47:57].strip()
+        return _get_messages(_SEGMENT, self._name)[0][47:57].strip()
 
     @property
     def passphrase_date(self):
         try:
             return datetime.strptime(
-                _get_messages("user", self._name)[1][68:], "%y.%j"
+                _get_messages(_SEGMENT, self._name)[1][68:], "%y.%j"
             ).date()
         except ValueError:
             return None
@@ -90,7 +90,7 @@ class RacfUser:
     def password_date(self):
         try:
             return datetime.strptime(
-                _get_messages("user", self._name)[1][32:38], "%y.%j"
+                _get_messages(_SEGMENT, self._name)[1][32:38], "%y.%j"
             ).date()
         except ValueError:
             return None
@@ -98,25 +98,25 @@ class RacfUser:
     @property
     def password_interval(self):
         try:
-            return int(_get_messages("user", self._name)[1][53:57].strip())
+            return int(_get_messages(_SEGMENT, self._name)[1][53:57].strip())
         except ValueError:
             return None
 
     @property
     def resume_date(self):
-        return _get_messages("user", self._name)[3][31:]
+        return _get_messages(_SEGMENT, self._name)[3][31:]
 
     @property
     def revoke_date(self):
-        return _get_messages("user", self._name)[3][12:19].strip()
+        return _get_messages(_SEGMENT, self._name)[3][12:19].strip()
 
     @property
     def security_label(self):
-        return _get_messages("user", self._name)[-1][15:]
+        return _get_messages(_SEGMENT, self._name)[-1][15:]
 
     @property
     def security_level(self):
-        return _get_messages("user", self._name)[-4][15:]
+        return _get_messages(_SEGMENT, self._name)[-4][15:]
 
     @property
     def tso(self):
@@ -126,7 +126,10 @@ class RacfUser:
 
     @property
     def user(self):
-        return _get_messages("user", self._name)[0][5:14].strip()
+        return _get_messages(_SEGMENT, self._name)[0][5:14].strip()
+
+
+_SEGMENT = "user"
 
 
 class _UserGroup:
@@ -169,7 +172,7 @@ class _Omvs:
 
     @property
     def home(self):
-        return _get_message_value("user", self._name, "omvs", "HOME")
+        return _get_message_value(_SEGMENT, self._name, "omvs", "HOME")
 
     @property
     def max_address_space_size(self):
@@ -197,14 +200,14 @@ class _Omvs:
 
     @property
     def program(self):
-        return _get_message_value("user", self._name, "omvs", "PROGRAM")
+        return _get_message_value(_SEGMENT, self._name, "omvs", "PROGRAM")
 
     @property
     def uid(self):
-        return int(_get_message_value("user", self._name, "omvs", "UID"))
+        return int(_get_message_value(_SEGMENT, self._name, "omvs", "UID"))
 
     def _get_max_value(self, key: str):
-        value = _get_message_value("user", self._name, "omvs", key)
+        value = _get_message_value(_SEGMENT, self._name, "omvs", key)
         return None if value == "NONE" else int(value)
 
 
@@ -216,28 +219,28 @@ class _Tso:
 
     @property
     def account_number(self):
-        return _get_message_value("user", self._name, "tso", "ACCTNUM")
+        return _get_message_value(_SEGMENT, self._name, "tso", "ACCTNUM")
 
     @property
     def command(self):
-        return _get_message_value("user", self._name, "tso", "COMMAND")
+        return _get_message_value(_SEGMENT, self._name, "tso", "COMMAND")
 
     @property
     def max_size(self):
-        return int(_get_message_value("user", self._name, "tso", "MAXSIZE"))
+        return int(_get_message_value(_SEGMENT, self._name, "tso", "MAXSIZE"))
 
     @property
     def proc(self):
-        return _get_message_value("user", self._name, "tso", "PROC")
+        return _get_message_value(_SEGMENT, self._name, "tso", "PROC")
 
     @property
     def size(self):
-        return int(_get_message_value("user", self._name, "tso", "SIZE"))
+        return int(_get_message_value(_SEGMENT, self._name, "tso", "SIZE"))
 
     @property
     def unit(self):
-        return _get_message_value("user", self._name, "tso", "UNIT")
+        return _get_message_value(_SEGMENT, self._name, "tso", "UNIT")
 
     @property
     def user_data(self):
-        return _get_message_value("user", self._name, "tso", "USERDATA")
+        return _get_message_value(_SEGMENT, self._name, "tso", "USERDATA")

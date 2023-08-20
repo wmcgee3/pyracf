@@ -36,22 +36,22 @@ static PyObject* call_irrsmo00(PyObject* self, PyObject* args, PyObject *kwargs)
     unsigned int num_parms=17, fn=1, opts = input_opts, rsp_len = sizeof(rsp)-1;
 
     IRRSMO64(
-        work_area, 
-        alet, 
-        saf_rc, 
-        alet, 
-        racf_rc, 
-        alet, 
-        racf_rsn, 
-        num_parms, 
-        fn, 
-        opts, 
-        xml_len, 
-        input_xml, 
-        req_handle, 
-        userid, 
-        acee, 
-        rsp_len, 
+        work_area,
+        alet,
+        saf_rc,
+        alet,
+        racf_rc,
+        alet,
+        racf_rsn,
+        num_parms,
+        fn,
+        opts,
+        xml_len,
+        input_xml,
+        req_handle,
+        userid,
+        acee,
+        rsp_len,
         rsp
     );
 
@@ -70,7 +70,7 @@ static PyMethodDef cpyracf_methods[] = {
 static struct PyModuleDef cpyracf_module_def =
 {
         PyModuleDef_HEAD_INIT,
-        "cpyracf", 
+        "cpyracf",
         "C code that enables pyRACF to call the IRRSMO00 RACF callable service.\n",
         -1,
         cpyracf_methods

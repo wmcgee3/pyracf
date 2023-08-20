@@ -49,20 +49,15 @@ def main():
         ],
         packages=[
             "pyracf",
-            "pyracf.access",
-            "pyracf.common",
-            "pyracf.connection",
-            "pyracf.data_set",
             "pyracf.group",
             "pyracf.resource",
-            "pyracf.setropts",
             "pyracf.user",
         ],
         package_dir={"": "."},
         ext_modules=[
             Extension(
                 "cpyracf",
-                sources=["pyracf/irrsmo00.c"],
+                sources=["cpyracf/irrsmo00.c"],
                 extra_compile_args=[
                     "-D_XOPEN_SOURCE_EXTENDED",
                     "-Wc,lp64,langlvl(EXTC99),STACKPROTECT(ALL),",
